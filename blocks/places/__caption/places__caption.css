@@ -1,0 +1,5 @@
+.places__caption {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 15px 21px 31px;
+}

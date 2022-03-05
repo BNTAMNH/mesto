@@ -1,0 +1,15 @@
+.places__like {
+  background-image: url('../../../images/like_inactive.svg');
+  background-size: cover;
+  width: 22px;
+  height: 19px;
+  border: none;
+  background-color: transparent;
+  align-self: center;
+  padding: 0;
+}
+
+.places__like:hover {
+  opacity: .6;
+  cursor: pointer;
+}
