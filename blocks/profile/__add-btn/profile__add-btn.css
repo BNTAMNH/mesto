@@ -11,6 +11,7 @@
   background-size: 22px 2px, 2px 22px;
   background-repeat:no-repeat;
   border: 2px solid #fff;
+  transition: opacity .4s;
 }
 
 .profile__add-btn:hover {
@@ -27,5 +28,6 @@
 @media screen and (max-width: 600px) {
   .profile__add-btn {
     width: 282px;
+    background-size: 17px 2px, 2px 17px;
   }
 }

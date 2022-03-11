@@ -6,6 +6,7 @@
   grid-area: profile__edit-btn;
   align-self: end;
   margin-bottom: 8px;
+  transition: opacity .4s;
 }
 
 .profile__edit-btn:hover {

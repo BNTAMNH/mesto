@@ -1,0 +1,28 @@
+.popup__edit {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 auto 30px;
+  padding: 0 0 6px;
+  width: 358px;
+  border: none;
+  border-bottom: 1px solid #00000033;
+  outline: none;
+}
+
+.popup__edit:last-of-type {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__edit {
+    width: 238px;
+    padding-bottom: 9px;
+  }
+
+  .popup__edit:last-of-type {
+    margin-bottom: 46px;
+  }
+}
