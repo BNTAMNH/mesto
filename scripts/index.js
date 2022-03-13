@@ -38,4 +38,3 @@ popapCloseButton.addEventListener('click', function() {
 
 //Меняем данные на странице и закрываем форму кнопкой "Сохранить"
 formElement.addEventListener('submit', formSubmitHandler);
-
