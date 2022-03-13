@@ -1,4 +1,4 @@
-.places__like {
+.place__like-btn {
   background-image: url('../../../images/like_inactive.svg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -13,7 +13,7 @@
   transition: opacity .4s;
 }
 
-.places__like:hover {
-  opacity: .6;
+.place__like-btn:hover {
+  opacity: .5;
   cursor: pointer;
 }

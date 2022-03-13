@@ -7,6 +7,9 @@
   align-self: end;
   margin-bottom: 8px;
   transition: opacity .4s;
+  background-image: url('../../../images/edit-btn_vector.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__edit-btn:hover {

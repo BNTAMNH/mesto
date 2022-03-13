@@ -3,15 +3,10 @@
   width: 150px;
   height: 50px;
   align-self: center;
-  background:
-    linear-gradient(#fff,#fff),
-    linear-gradient(#fff,#fff),
-    #000;
-  background-position:center;
-  background-size: 22px 2px, 2px 22px;
-  background-repeat:no-repeat;
+  background: transparent url('../../../images/add-icon.svg') no-repeat center;
   border: 2px solid #fff;
   transition: opacity .4s;
+  border-radius: 2px;
 }
 
 .profile__add-btn:hover {
@@ -28,6 +23,5 @@
 @media screen and (max-width: 600px) {
   .profile__add-btn {
     width: 282px;
-    background-size: 17px 2px, 2px 17px;
   }
 }

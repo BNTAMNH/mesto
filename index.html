@@ -19,72 +19,70 @@
           <div class="profile__data">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__about-me">Исследователь океана</p>
-            <button class="profile__edit-btn" type="button">
-              <img src="./images/edit-btn_vector.svg" alt="Значок редактирования" class="profile__edit-img">
-            </button>
+            <button class="profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
           </div>
         </div>
-        <button class="profile__add-btn" type="button"></button>
+        <button class="profile__add-btn" type="button" aria-label="Добавить фото"></button>
       </section>
       <section class="places">
         <ul class="places__list">
-          <li class="places__card">
-            <img src="./images/olkhon-island.jpg" alt="Ольхон" class="places__photo" />
-            <div class="places__caption">
-              <h2 class="places__title">Ольхон</h2>
-              <button class="places__like"></button>
+          <li class="place">
+            <img src="./images/olkhon-island.jpg" alt="Ольхон" class="place__photo" />
+            <div class="place__caption">
+              <h2 class="place__title">Ольхон</h2>
+              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
             </div>
           </li>
-          <li class="places__card">
-            <img src="./images/baskunchak.jpg" alt="Баскунчак" class="places__photo" />
-            <div class="places__caption">
-              <h2 class="places__title">Баскунчак</h2>
-              <button class="places__like" type="button"></button>
+          <li class="place">
+            <img src="./images/baskunchak.jpg" alt="Баскунчак" class="place__photo" />
+            <div class="place__caption">
+              <h2 class="place__title">Баскунчак</h2>
+              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
             </div>
           </li>
-          <li class="places__card">
-            <img src="./images/abrau-dyurso.jpg" alt="Абрау-Дюрсо" class="places__photo" />
-            <div class="places__caption">
-              <h2 class="places__title">Абрау-Дюрсо</h2>
-              <button class="places__like"></button>
+          <li class="place">
+            <img src="./images/abrau-dyurso.jpg" alt="Абрау-Дюрсо" class="place__photo" />
+            <div class="place__caption">
+              <h2 class="place__title">Абрау-Дюрсо</h2>
+              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
             </div>
           </li>
-          <li class="places__card">
-            <img src="./images/kamchatka.jpg" alt="Камчатка" class="places__photo" />
-            <div class="places__caption">
-              <h2 class="places__title">Камчатка</h2>
-              <button class="places__like"></button>
+          <li class="place">
+            <img src="./images/kamchatka.jpg" alt="Камчатка" class="place__photo" />
+            <div class="place__caption">
+              <h2 class="place__title">Камчатка</h2>
+              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
             </div>
           </li>
-          <li class="places__card">
-            <img src="./images/sortavala.jpg" alt="Сортавала" class="places__photo" />
-            <div class="places__caption">
-              <h2 class="places__title">Сортавала</h2>
-              <button class="places__like"></button>
+          <li class="place">
+            <img src="./images/sortavala.jpg" alt="Сортавала" class="place__photo" />
+            <div class="place__caption">
+              <h2 class="place__title">Сортавала</h2>
+              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
             </div>
           </li>
-          <li class="places__card">
-            <img src="./images/karachay-cherkess.jpg" alt="Карачаево-Черкессия" class="places__photo" />
-            <div class="places__caption">
-              <h2 class="places__title">Карачаево-Черкессия</h2>
-              <button class="places__like"></button>
+          <li class="place">
+            <img src="./images/karachay-cherkess.jpg" alt="Карачаево-Черкессия" class="place__photo" />
+            <div class="place__caption">
+              <h2 class="place__title">Карачаево-Черкессия</h2>
+              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
 
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close-btn" type="button"></button>
+      <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="submit" class="popup__form">
-        <input type="text" name="popup__name" class="popup__edit" id="name" value="">
-        <input type="text" name="popup__about-me" class="popup__edit" id="about-me" value="">
+      <form action="submit" name="popup" class="popup__form">
+        <input type="text" name="popup__name" class="popup__input popup__input_type_name" id="name">
+        <input type="text" name="popup__about-me" class="popup__input popup__input_type_about-me" id="about-me">
         <button class="popup__save-btn" type="submit">Сохранить</button>
       </form>
     </div>

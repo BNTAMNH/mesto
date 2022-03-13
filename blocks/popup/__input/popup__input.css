@@ -1,4 +1,4 @@
-.popup__edit {
+.popup__input {
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -12,17 +12,17 @@
   outline: none;
 }
 
-.popup__edit:last-of-type {
+.popup__input:last-of-type {
   margin-bottom: 48px;
 }
 
 @media screen and (max-width: 600px) {
-  .popup__edit {
+  .popup__input {
     width: 238px;
     padding-bottom: 9px;
   }
 
-  .popup__edit:last-of-type {
+  .popup__input:last-of-type {
     margin-bottom: 46px;
   }
 }
