@@ -1,12 +1,11 @@
 let popup = document.querySelector('.popup');
 let profileEditButton = document.querySelector('.profile__edit-btn');
-let popapCloseButton = popup.querySelector('.popup__close-btn');
+let popupCloseButton = popup.querySelector('.popup__close-btn');
 let profileName = document.querySelector('.profile__name');
 let profileAboutMe = document.querySelector('.profile__about-me');
 let formElement = popup.querySelector('.popup__form');
 let inputName = document.getElementById('name');
 let inputAboutMe = document.getElementById('about-me');
-let popupSaveButton = popup.querySelector('.popup__save-btn');
 
 function openPopup() {
   inputName.value = profileName.textContent; //Подставляем имя в форму редактирования
@@ -27,14 +26,10 @@ function formSubmitHandler(evt) {
 }
 
 //Открытие формы редактирования
-profileEditButton.addEventListener('click', function() {
-  openPopup();
-})
+profileEditButton.addEventListener('click', openPopup);
 
 //Закрытие формы редактирования на "крестик"
-popapCloseButton.addEventListener('click', function() {
-  closePopup();
-})
+popupCloseButton.addEventListener('click', closePopup);
 
 //Меняем данные на странице и закрываем форму кнопкой "Сохранить"
 formElement.addEventListener('submit', formSubmitHandler);
