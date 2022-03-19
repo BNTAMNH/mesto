@@ -24,50 +24,17 @@
         </div>
         <button class="profile__add-btn" type="button" aria-label="Добавить фото"></button>
       </section>
-      <section class="places">
+      <section class="places" aria-label="Место">
         <ul class="places__list">
-          <li class="place">
-            <img src="./images/olkhon-island.jpg" alt="Ольхон" class="place__photo" />
-            <div class="place__caption">
-              <h2 class="place__title">Ольхон</h2>
-              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img src="./images/baskunchak.jpg" alt="Баскунчак" class="place__photo" />
-            <div class="place__caption">
-              <h2 class="place__title">Баскунчак</h2>
-              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img src="./images/abrau-dyurso.jpg" alt="Абрау-Дюрсо" class="place__photo" />
-            <div class="place__caption">
-              <h2 class="place__title">Абрау-Дюрсо</h2>
-              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img src="./images/kamchatka.jpg" alt="Камчатка" class="place__photo" />
-            <div class="place__caption">
-              <h2 class="place__title">Камчатка</h2>
-              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img src="./images/sortavala.jpg" alt="Сортавала" class="place__photo" />
-            <div class="place__caption">
-              <h2 class="place__title">Сортавала</h2>
-              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="place">
-            <img src="./images/karachay-cherkess.jpg" alt="Карачаево-Черкессия" class="place__photo" />
-            <div class="place__caption">
-              <h2 class="place__title">Карачаево-Черкессия</h2>
-              <button class="place__like-btn" type="button" aria-label="Нравится"></button>
-            </div>
-          </li>
+          <template id="place">
+            <li class="place">
+              <img src="#" alt="" class="place__photo"/>
+              <div class="place__caption">
+                <h2 class="place__title"></h2>
+                <button class="place__like-btn" type="button" aria-label="Нравится"></button>
+              </div>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
