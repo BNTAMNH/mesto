@@ -3,7 +3,7 @@ const profileEditButton = document.querySelector('.profile__edit-btn');
 const popupCloseButton = document.querySelector('.popup__close-btn');
 const profileName = document.querySelector('.profile__name');
 const profileAboutMe = document.querySelector('.profile__about-me');
-const formElement = popupEditProfile.querySelector('.popup__form');
+const formElementProfile = popupEditProfile.querySelector('.popup__form');
 const inputName = document.getElementById('name');
 const inputAboutMe = document.getElementById('about-me');
 
@@ -18,7 +18,7 @@ function closePopupProfile() {
 }
 
 //Обработчик «отправки» формы
-function formSubmitHandler(evt) {
+function submitFormProfile(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value; //Меняем "имя" на странице на значение из формы
   profileAboutMe.textContent = inputAboutMe.value; //Меняем "о себе" на странице на значение из формы
@@ -32,7 +32,7 @@ profileEditButton.addEventListener('click', openPopupProfile);
 popupCloseButton.addEventListener('click', closePopupProfile);
 
 //Меняем данные на странице и закрываем форму кнопкой "Сохранить"
-formElement.addEventListener('submit', formSubmitHandler);
+formElementProfile.addEventListener('submit', submitFormProfile);
 
 const initialCards = [
   {
@@ -94,3 +94,20 @@ const closePopupAddCard = () => {
 
 const popupCloseButtonAddCard = document.querySelector('.popup__close-btn_type_add-card');
 popupCloseButtonAddCard.addEventListener('click', closePopupAddCard);
+
+const inputTitleCard = document.getElementById('title');
+const inputPhotoLink = document.getElementById('photo-link');
+const formElementAddCard = popupAddCard.querySelector('.popup__form');
+
+function submitFormAddCard(evt) {
+  evt.preventDefault();
+  renderCard({inputTitleCard, inputPhotoLink}, placesList);
+  const titleNewCard = document.querySelector('.place__title');
+  const photoNewCard = document.querySelector('.place__photo');
+  titleNewCard.textContent = inputTitleCard.value;
+  photoNewCard.src = inputPhotoLink.value;
+  photoNewCard.alt = inputTitleCard.value;
+  closePopupAddCard();
+}
+
+formElementAddCard.addEventListener('submit', submitFormAddCard);
