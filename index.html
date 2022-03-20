@@ -43,13 +43,25 @@
     </footer>
   </div>
 
-  <div class="popup">
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
-      <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
+      <button class="popup__close-btn popup__close-btn_type_edit-profile" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form action="submit" name="popup" class="popup__form">
         <input type="text" name="popup__name" required class="popup__input popup__input_type_name" id="name">
         <input type="text" name="popup__about-me" required class="popup__input popup__input_type_about-me" id="about-me">
+        <button class="popup__save-btn" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_add-card">
+    <div class="popup__container">
+      <button class="popup__close-btn popup__close-btn_type_add-card" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form action="submit" name="popup" class="popup__form">
+        <input type="text" name="popup__title" required class="popup__input popup__input_type_title" id="title" placeholder="Название">
+        <input type="text" name="popup__photo-link" required class="popup__input popup__input_type_photo-link" id="photo-link" placeholder="Ссылка на картинку">
         <button class="popup__save-btn" type="submit">Сохранить</button>
       </form>
     </div>

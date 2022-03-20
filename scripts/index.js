@@ -1,20 +1,20 @@
-const popup = document.querySelector('.popup');
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const profileEditButton = document.querySelector('.profile__edit-btn');
-const popupCloseButton = popup.querySelector('.popup__close-btn');
+const popupCloseButton = document.querySelector('.popup__close-btn');
 const profileName = document.querySelector('.profile__name');
 const profileAboutMe = document.querySelector('.profile__about-me');
-const formElement = popup.querySelector('.popup__form');
+const formElement = popupEditProfile.querySelector('.popup__form');
 const inputName = document.getElementById('name');
 const inputAboutMe = document.getElementById('about-me');
 
-function openPopup() {
+function openPopupProfile() {
   inputName.value = profileName.textContent; //Подставляем имя в форму редактирования
   inputAboutMe.value = profileAboutMe.textContent; //Подставляем информацию "о себе" в форму редактирования
-  popup.classList.add('popup_opened');
+  popupEditProfile.classList.add('popup_opened');
 }
 
-function closePopup() {
-  popup.classList.remove('popup_opened');
+function closePopupProfile() {
+  popupEditProfile.classList.remove('popup_opened');
 }
 
 //Обработчик «отправки» формы
@@ -22,14 +22,14 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value; //Меняем "имя" на странице на значение из формы
   profileAboutMe.textContent = inputAboutMe.value; //Меняем "о себе" на странице на значение из формы
-  closePopup();
+  closePopupProfile();
 }
 
 //Открытие формы редактирования
-profileEditButton.addEventListener('click', openPopup);
+profileEditButton.addEventListener('click', openPopupProfile);
 
 //Закрытие формы редактирования на "крестик"
-popupCloseButton.addEventListener('click', closePopup);
+popupCloseButton.addEventListener('click', closePopupProfile);
 
 //Меняем данные на странице и закрываем форму кнопкой "Сохранить"
 formElement.addEventListener('submit', formSubmitHandler);
@@ -81,3 +81,16 @@ const renderCard = (data, placesList) => {
 
 initialCards.forEach(data => { renderCard(data, placesList); });
 
+const popupAddCard = document.querySelector('.popup_type_add-card');
+const addCardButton = document.querySelector('.profile__add-btn');
+const openPopupAddCard = () => {
+  popupAddCard.classList.add('popup_opened');
+}
+addCardButton.addEventListener('click', openPopupAddCard);
+
+const closePopupAddCard = () => {
+  popupAddCard.classList.remove('popup_opened');
+}
+
+const popupCloseButtonAddCard = document.querySelector('.popup__close-btn_type_add-card');
+popupCloseButtonAddCard.addEventListener('click', closePopupAddCard);
