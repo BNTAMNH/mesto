@@ -1,38 +1,41 @@
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const popupEdit = document.querySelector('.popup_type_edit');
 const profileEditButton = document.querySelector('.profile__edit-btn');
-const popupCloseButton = document.querySelector('.popup__close-btn');
+const closeBtnEdit = document.querySelector('.popup__close-btn_type_edit');
 const profileName = document.querySelector('.profile__name');
 const profileAboutMe = document.querySelector('.profile__about-me');
-const formElementProfile = popupEditProfile.querySelector('.popup__form');
+const formElementProfile = document.querySelector('.popup__form_type_edit');
 const inputName = document.getElementById('name');
 const inputAboutMe = document.getElementById('about-me');
 
+function openPopup(element) {
+  element.classList.add('popup_opened')
+}
+
+function closePopup(element) {
+  element.classList.remove('popup_opened');
+}
+
 function openPopupProfile() {
-  inputName.value = profileName.textContent; //Подставляем имя в форму редактирования
-  inputAboutMe.value = profileAboutMe.textContent; //Подставляем информацию "о себе" в форму редактирования
-  popupEditProfile.classList.add('popup_opened');
+  inputName.value = profileName.textContent;
+  inputAboutMe.value = profileAboutMe.textContent;
+  openPopup(popupEdit);
 }
 
-function closePopupProfile() {
-  popupEditProfile.classList.remove('popup_opened');
+function handleCloseButtonClick(evt) {
+  closePopup(evt.target.closest('.popup') );
 }
 
-//Обработчик «отправки» формы
 function submitFormProfile(evt) {
   evt.preventDefault();
-  profileName.textContent = inputName.value; //Меняем "имя" на странице на значение из формы
-  profileAboutMe.textContent = inputAboutMe.value; //Меняем "о себе" на странице на значение из формы
-  closePopupProfile();
+  profileName.textContent = inputName.value;
+  profileAboutMe.textContent = inputAboutMe.value;
+  closePopup(popupEdit);
 }
 
-//Открытие формы редактирования
 profileEditButton.addEventListener('click', openPopupProfile);
-
-//Закрытие формы редактирования на "крестик"
-popupCloseButton.addEventListener('click', closePopupProfile);
-
-//Меняем данные на странице и закрываем форму кнопкой "Сохранить"
+closeBtnEdit.addEventListener('click', handleCloseButtonClick);
 formElementProfile.addEventListener('submit', submitFormProfile);
+
 
 const initialCards = [
   {
@@ -61,9 +64,9 @@ const initialCards = [
   }
 ];
 
-const placesList = document.querySelector('.places__list');
 
-const createCard = (data) => {
+//Функция создающая карточку
+function createCard(data) {
   const placeTemplate = document.querySelector('#place').content;
   const placeCard = placeTemplate.querySelector('.place').cloneNode(true);
   const photoCard = placeCard.querySelector('.place__photo');
@@ -74,16 +77,37 @@ const createCard = (data) => {
   return placeCard;
 }
 
-const renderCard = (data, placesList) => {
-  const placeCard = createCard(data);
-  placesList.prepend(placeCard);
+//Функция переключения "лайка"
+function toggleLike(evt) {
+  evt.target.classList.toggle('place__like-btn_active');
 }
 
+//Функция удаления карточки
+function deleteCard() {
+  const place = document.querySelector('.place');
+  place.remove();
+}
+
+//Находим контейнер для карточек
+const placesList = document.querySelector('.places__list');
+
+//Функция отрисовки карточек
+function renderCard(data, placesList) {
+  const placeCard = createCard(data);
+  placesList.prepend(placeCard);
+  const likeButton = document.querySelector('.place__like-btn');
+  likeButton.addEventListener('click', toggleLike);
+  const trashButton = document.querySelector('.place__trash-btn');
+  trashButton.addEventListener('click', deleteCard);
+  const photoCard = placeCard.querySelector('.place__photo');
+  photoCard.addEventListener('click', openPopupPhoto);
+}
+//Отрисовка карточек "по умолчанию"
 initialCards.forEach(data => { renderCard(data, placesList); });
 
-const popupAddCard = document.querySelector('.popup_type_add-card');
+const popupAddCard = document.querySelector('.popup_type_add');
 const addCardButton = document.querySelector('.profile__add-btn');
-const openPopupAddCard = () => {
+function openPopupAddCard() {
   popupAddCard.classList.add('popup_opened');
 }
 addCardButton.addEventListener('click', openPopupAddCard);
@@ -92,22 +116,37 @@ const closePopupAddCard = () => {
   popupAddCard.classList.remove('popup_opened');
 }
 
-const popupCloseButtonAddCard = document.querySelector('.popup__close-btn_type_add-card');
-popupCloseButtonAddCard.addEventListener('click', closePopupAddCard);
-
 const inputTitleCard = document.getElementById('title');
 const inputPhotoLink = document.getElementById('photo-link');
-const formElementAddCard = popupAddCard.querySelector('.popup__form');
+const formElementAddCard = popupAddCard.querySelector('.popup__form_type_add');
+const popupCloseButtonAddCard = document.querySelector('.popup__close-btn_type_add');
 
 function submitFormAddCard(evt) {
   evt.preventDefault();
   renderCard({inputTitleCard, inputPhotoLink}, placesList);
-  const titleNewCard = document.querySelector('.place__title');
-  const photoNewCard = document.querySelector('.place__photo');
-  titleNewCard.textContent = inputTitleCard.value;
-  photoNewCard.src = inputPhotoLink.value;
-  photoNewCard.alt = inputTitleCard.value;
-  closePopupAddCard();
+  titleCard.textContent = inputTitleCard.value;
+  photoCard.src = inputPhotoLink.value;
+  photoCard.alt = inputTitleCard.value;
+  closePopupAddCard(popupAddCard);
+  evt.currentTarget.reset();
 }
 
+popupCloseButtonAddCard.addEventListener('click', closePopupAddCard);
 formElementAddCard.addEventListener('submit', submitFormAddCard);
+
+const popupPhoto = document.querySelector('.popup_type_photo');
+const popupPhotoImg = document.querySelector('.popup__photo');
+const popupPhotoCaption = document.querySelector('.popup__caption');
+
+function openPopupPhoto(evt) {
+  popupPhotoImg.src = evt.target.closest('.place__photo').src;
+  popupPhotoCaption.textContent = evt.target.closest('.place__photo').alt;
+  openPopup(popupPhoto);
+}
+
+const closeBtnPhoto = document.querySelector('.popup__close-btn_type_photo');
+function closePopupPhoto() {
+  closePopup(popupPhoto);
+}
+
+closeBtnPhoto.addEventListener('click', closePopupPhoto);
