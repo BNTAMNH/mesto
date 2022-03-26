@@ -74,6 +74,11 @@ function createCard(data) {
   photoCard.src = data.link;
   titleCard.textContent = data.name;
   photoCard.alt = data.name;
+  const likeButton = placeCard.querySelector('.place__like-btn');
+  likeButton.addEventListener('click', toggleLike);
+  const trashButton = placeCard.querySelector('.place__trash-btn');
+  trashButton.addEventListener('click', deleteCard);
+  photoCard.addEventListener('click', openPopupPhoto);
   return placeCard;
 }
 
@@ -94,12 +99,6 @@ const placesList = document.querySelector('.places__list');
 function renderCard(data, placesList) {
   const placeCard = createCard(data);
   placesList.prepend(placeCard);
-  const likeButton = document.querySelector('.place__like-btn');
-  likeButton.addEventListener('click', toggleLike);
-  const trashButton = document.querySelector('.place__trash-btn');
-  trashButton.addEventListener('click', deleteCard);
-  const photoCard = placeCard.querySelector('.place__photo');
-  photoCard.addEventListener('click', openPopupPhoto);
 }
 //Отрисовка карточек "по умолчанию"
 initialCards.forEach(data => { renderCard(data, placesList); });
@@ -118,12 +117,11 @@ const popupCloseButtonAddCard = document.querySelector('.popup__close-btn_type_a
 
 function submitFormAddCard(evt) {
   evt.preventDefault();
-  renderCard({inputTitleCard, inputPhotoLink}, placesList);
-  const titleCard = document.querySelector('.place__title');
-  const photoCard = document.querySelector('.place__photo');
-  titleCard.textContent = inputTitleCard.value;
-  photoCard.src = inputPhotoLink.value;
-  photoCard.alt = inputTitleCard.value;
+  const data = {
+    name: inputTitleCard.value,
+    link: inputPhotoLink.value
+  }
+  renderCard(data, placesList);
   closePopup(popupAddCard);
   evt.currentTarget.reset();
 }
@@ -136,8 +134,9 @@ const popupPhotoImg = document.querySelector('.popup__photo');
 const popupPhotoCaption = document.querySelector('.popup__caption');
 
 function openPopupPhoto(evt) {
-  popupPhotoImg.src = evt.target.closest('.place__photo').src;
-  popupPhotoCaption.textContent = evt.target.closest('.place__photo').alt;
+  popupPhotoImg.src = evt.target.src;
+  popupPhotoCaption.textContent = evt.target.alt;
+  popupPhotoImg.alt = evt.target.alt;
   openPopup(popupPhoto);
 }
 
