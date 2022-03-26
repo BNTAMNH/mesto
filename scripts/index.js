@@ -112,10 +112,6 @@ function openPopupAddCard() {
 }
 addCardButton.addEventListener('click', openPopupAddCard);
 
-const closePopupAddCard = () => {
-  popupAddCard.classList.remove('popup_opened');
-}
-
 const inputTitleCard = document.getElementById('title');
 const inputPhotoLink = document.getElementById('photo-link');
 const formElementAddCard = popupAddCard.querySelector('.popup__form_type_add');
@@ -124,14 +120,16 @@ const popupCloseButtonAddCard = document.querySelector('.popup__close-btn_type_a
 function submitFormAddCard(evt) {
   evt.preventDefault();
   renderCard({inputTitleCard, inputPhotoLink}, placesList);
+  const titleCard = document.querySelector('.place__title');
+  const photoCard = document.querySelector('.place__photo');
   titleCard.textContent = inputTitleCard.value;
   photoCard.src = inputPhotoLink.value;
   photoCard.alt = inputTitleCard.value;
-  closePopupAddCard(popupAddCard);
+  closePopup(popupAddCard);
   evt.currentTarget.reset();
 }
 
-popupCloseButtonAddCard.addEventListener('click', closePopupAddCard);
+popupCloseButtonAddCard.addEventListener('click', handleCloseButtonClick);
 formElementAddCard.addEventListener('submit', submitFormAddCard);
 
 const popupPhoto = document.querySelector('.popup_type_photo');
