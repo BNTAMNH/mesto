@@ -107,7 +107,7 @@ initialCards.forEach(data => { renderCard(data, placesList); });
 const popupAddCard = document.querySelector('.popup_type_add');
 const addCardButton = document.querySelector('.profile__add-btn');
 function openPopupAddCard() {
-  popupAddCard.classList.add('popup_opened');
+  openPopup(popupAddCard);
 }
 addCardButton.addEventListener('click', openPopupAddCard);
 
