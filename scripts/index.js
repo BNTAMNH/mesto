@@ -83,9 +83,8 @@ function toggleLike(evt) {
 }
 
 //Функция удаления карточки
-function deleteCard() {
-  const place = document.querySelector('.place');
-  place.remove();
+function deleteCard(evt) {
+  evt.target.closest('.place').remove();
 }
 
 //Находим контейнер для карточек
