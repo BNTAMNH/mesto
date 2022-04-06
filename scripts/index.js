@@ -22,7 +22,9 @@ function openPopupProfile() {
 }
 
 function handleCloseButtonClick(evt) {
-  closePopup(evt.target.closest('.popup') );
+  if (evt.target.classList.contains("popup") || evt.target.classList.contains("popup__close-btn")) {
+    closePopup(evt.target.closest(".popup"));
+  }
 }
 
 function submitFormProfile(evt) {
@@ -33,9 +35,7 @@ function submitFormProfile(evt) {
 }
 
 profileEditButton.addEventListener('click', openPopupProfile);
-closeBtnEdit.addEventListener('click', handleCloseButtonClick);
 formElementProfile.addEventListener('submit', submitFormProfile);
-
 
 const initialCards = [
   {
@@ -126,7 +126,6 @@ function submitFormAddCard(evt) {
   evt.currentTarget.reset();
 }
 
-popupCloseButtonAddCard.addEventListener('click', handleCloseButtonClick);
 formElementAddCard.addEventListener('submit', submitFormAddCard);
 
 const popupPhoto = document.querySelector('.popup_type_photo');
@@ -140,9 +139,6 @@ function openPopupPhoto(evt) {
   openPopup(popupPhoto);
 }
 
-const closeBtnPhoto = document.querySelector('.popup__close-btn_type_photo');
-function closePopupPhoto() {
-  closePopup(popupPhoto);
-}
-
-closeBtnPhoto.addEventListener('click', closePopupPhoto);
+popupEdit.addEventListener("click", handleCloseButtonClick);
+popupAddCard.addEventListener("click", handleCloseButtonClick);
+popupPhoto.addEventListener("click", handleCloseButtonClick);
