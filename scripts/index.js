@@ -44,10 +44,12 @@ const initialCards = [
 ];
 
 function openPopup(element) {
+  document.addEventListener('keydown', handleEscUp);
   element.classList.add('popup_opened')
 }
 
 function closePopup(element) {
+  document.removeEventListener('keydown', handleEscUp);
   element.classList.remove('popup_opened');
 }
 
@@ -62,6 +64,13 @@ function handleCloseButtonClick(evt) {
     closePopup(evt.target.closest(".popup"));
   }
 }
+
+function handleEscUp(evt) {
+  const activePopup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(activePopup);
+  };
+};
 
 function submitFormProfile(evt) {
   evt.preventDefault();
@@ -105,6 +114,8 @@ function renderCard(data, placesList) {
 initialCards.forEach(data => { renderCard(data, placesList); });
 
 function openPopupAddCard() {
+  inputTitleCard.value = '';
+  inputPhotoLink.value = '';
   openPopup(popupAddCard);
 }
 addCardButton.addEventListener('click', openPopupAddCard);
