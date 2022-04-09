@@ -62,6 +62,12 @@ function clearError(element) {
   })
 }
 
+function disableSubmitBtn(formElement, settings) {
+  const button = formElement.querySelector(settings.submitButtonSelector);
+  button.setAttribute('disabled', 'disabled');
+  button.classList.add(settings.inactiveButtonClass);
+}
+
 function openPopupProfile() {
   inputName.value = profileName.textContent;
   inputAboutMe.value = profileAboutMe.textContent;
@@ -126,6 +132,7 @@ function openPopupAddCard() {
   inputTitleCard.value = '';
   inputPhotoLink.value = '';
   openPopup(popupAddCard);
+  disableSubmitBtn(popupAddCard, settings);
 }
 addCardButton.addEventListener('click', openPopupAddCard);
 
