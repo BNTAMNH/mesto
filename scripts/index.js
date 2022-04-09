@@ -51,6 +51,15 @@ function openPopup(element) {
 function closePopup(element) {
   document.removeEventListener('keydown', handleEscUp);
   element.classList.remove('popup_opened');
+  clearError(element);
+}
+
+function clearError(element) {
+  const formElement = element.querySelector('.popup__form');
+  const inputList = Array.from(element.querySelectorAll('.popup__input'));
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, settings);
+  })
 }
 
 function openPopupProfile() {
