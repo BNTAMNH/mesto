@@ -25,7 +25,6 @@ function openPopup(element) {
 function closePopup(element) {
   document.removeEventListener('keydown', handleEscUp);
   element.classList.remove('popup_opened');
-  clearError(element);
 }
 
 function clearError(element) {
@@ -43,6 +42,7 @@ function disableSubmitBtn(formElement, settings) {
 }
 
 function openPopupProfile() {
+  clearError(popupEdit);
   inputName.value = profileName.textContent;
   inputAboutMe.value = profileAboutMe.textContent;
   openPopup(popupEdit);
@@ -103,6 +103,7 @@ function renderCard(data, placesList) {
 initialCards.forEach(data => { renderCard(data, placesList); });
 
 function openPopupAddCard() {
+  clearError(popupAddCard);
   inputTitleCard.value = '';
   inputPhotoLink.value = '';
   openPopup(popupAddCard);
