@@ -1,3 +1,5 @@
+import { Card } from "./Card.js";
+
 const popupEdit = document.querySelector('.popup_type_edit');
 const profileEditButton = document.querySelector('.profile__edit-btn');
 const closeBtnEdit = document.querySelector('.popup__close-btn_type_edit');
@@ -16,6 +18,33 @@ const popupCloseButtonAddCard = document.querySelector('.popup__close-btn_type_a
 const popupPhoto = document.querySelector('.popup_type_photo');
 const popupPhotoImg = document.querySelector('.popup__photo');
 const popupPhotoCaption = document.querySelector('.popup__caption');
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 function openPopup(element) {
   document.addEventListener('keydown', handleEscUp);
@@ -71,33 +100,9 @@ function submitFormProfile(evt) {
 profileEditButton.addEventListener('click', openPopupProfile);
 formElementProfile.addEventListener('submit', submitFormProfile);
 
-function createCard(data) {
-  const placeTemplate = document.querySelector('#place').content;
-  const placeCard = placeTemplate.querySelector('.place').cloneNode(true);
-  const photoCard = placeCard.querySelector('.place__photo');
-  const titleCard = placeCard.querySelector('.place__title');
-  photoCard.src = data.link;
-  titleCard.textContent = data.name;
-  photoCard.alt = data.name;
-  const likeButton = placeCard.querySelector('.place__like-btn');
-  likeButton.addEventListener('click', toggleLike);
-  const trashButton = placeCard.querySelector('.place__trash-btn');
-  trashButton.addEventListener('click', deleteCard);
-  photoCard.addEventListener('click', openPopupPhoto);
-  return placeCard;
-}
-
-function toggleLike(evt) {
-  evt.target.classList.toggle('place__like-btn_active');
-}
-
-function deleteCard(evt) {
-  evt.target.closest('.place').remove();
-}
-
 function renderCard(data, placesList) {
-  const placeCard = createCard(data);
-  placesList.prepend(placeCard);
+  const card = new Card(data, '#place');
+  placesList.prepend(card.generateCard());
 }
 
 initialCards.forEach(data => { renderCard(data, placesList); });
@@ -124,7 +129,7 @@ function submitFormAddCard(evt) {
 
 formElementAddCard.addEventListener('submit', submitFormAddCard);
 
-function openPopupPhoto(evt) {
+export function openPopupPhoto(evt) {
   popupPhotoImg.src = evt.target.src;
   popupPhotoCaption.textContent = evt.target.alt;
   popupPhotoImg.alt = evt.target.alt;

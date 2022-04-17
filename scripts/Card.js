@@ -1,6 +1,6 @@
 import { openPopupPhoto } from "./index.js";
 
-class Card {
+export class Card {
   constructor(data, cardSelector) {
     this._link = data.link;
     this._name = data.name;
@@ -55,5 +55,3 @@ class Card {
   }
 
 }
-
-//добавить обработчики, добавить слушатели событий
