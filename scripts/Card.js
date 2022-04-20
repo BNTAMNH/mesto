@@ -53,5 +53,4 @@ export class Card {
       .querySelector('.place__photo')
       .addEventListener('click', openPopupPhoto);
   }
-
 }
