@@ -17,6 +17,7 @@ const formElementAddCard = popupAddCard.querySelector('.popup__form_type_add');
 const popupPhoto = document.querySelector('.popup_type_photo');
 const popupPhotoImg = document.querySelector('.popup__photo');
 const popupPhotoCaption = document.querySelector('.popup__caption');
+const templateCard = '#place';
 
 const initialCards = [
   {
@@ -97,7 +98,7 @@ profileEditButton.addEventListener('click', openPopupProfile);
 formElementProfile.addEventListener('submit', submitFormProfile);
 
 function renderCard(data, placesList) {
-  const card = new Card(data, '#place');
+  const card = new Card(data, templateCard);
   placesList.prepend(card.generateCard());
 }
 
