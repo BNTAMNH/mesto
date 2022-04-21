@@ -55,6 +55,12 @@ const settings = {
   errorClass: 'popup__input-error_active'
 };
 
+const profileFormValidation = new FormValidator(settings, formElementProfile);
+profileFormValidation.enableValidation();
+
+const addCardFormValidation = new FormValidator(settings, popupAddCard);
+addCardFormValidation.enableValidation();
+
 function openPopup(element) {
   document.addEventListener('keydown', handleEscUp);
   element.classList.add('popup_opened')
@@ -66,8 +72,6 @@ function closePopup(element) {
 }
 
 function openPopupProfile() {
-  const profileFormValidation = new FormValidator(settings, formElementProfile);
-  profileFormValidation.enableValidation();
   profileFormValidation.clearErrors(formElementProfile);
   inputName.value = profileName.textContent;
   inputAboutMe.value = profileAboutMe.textContent;
@@ -105,8 +109,6 @@ function renderCard(data, placesList) {
 initialCards.forEach(data => { renderCard(data, placesList); });
 
 function openPopupAddCard() {
-  const addCardFormValidation = new FormValidator(settings, popupAddCard);
-  addCardFormValidation.enableValidation();
   addCardFormValidation.clearErrors(popupAddCard);
   inputTitleCard.value = '';
   inputPhotoLink.value = '';
