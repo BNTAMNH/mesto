@@ -111,7 +111,6 @@ function openPopupAddCard() {
   inputTitleCard.value = '';
   inputPhotoLink.value = '';
   openPopup(popupAddCard);
-  addCardFormValidation.disableButton(popupAddCard);
 }
 addCardButton.addEventListener('click', openPopupAddCard);
 
