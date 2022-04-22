@@ -15,7 +15,7 @@
   border-radius: 2px;
 }
 
-.popup__save-btn:hover {
+.popup__save-btn:not([disabled]):hover {
   opacity: 0.8;
   cursor: pointer;
 }

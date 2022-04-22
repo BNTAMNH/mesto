@@ -128,7 +128,7 @@ function submitFormAddCard(evt) {
   }
   renderCard(data, placesList);
   closePopup(popupAddCard);
-  evt.currentTarget.reset();
+  formElementAddCard.reset();
 }
 
 formElementAddCard.addEventListener('submit', submitFormAddCard);
