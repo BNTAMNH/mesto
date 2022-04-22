@@ -101,9 +101,13 @@ function submitFormProfile(evt) {
 profileEditButton.addEventListener('click', openPopupProfile);
 formElementProfile.addEventListener('submit', submitFormProfile);
 
-function renderCard(data, placesList) {
+function createCard(data) {
   const card = new Card(data, templateCard);
-  placesList.prepend(card.generateCard());
+  return card.generateCard();
+}
+
+function renderCard(data, placesList) {
+  placesList.prepend(createCard(data));
 }
 
 initialCards.forEach(data => { renderCard(data, placesList); });
