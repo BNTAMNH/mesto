@@ -72,9 +72,9 @@ function closePopup(element) {
 }
 
 function openPopupProfile() {
-  profileFormValidation.clearErrors(formElementProfile);
   inputName.value = profileName.textContent;
   inputAboutMe.value = profileAboutMe.textContent;
+  profileFormValidation.clearErrors(formElementProfile);
   openPopup(popupEdit);
 }
 
@@ -113,9 +113,9 @@ function renderCard(data, placesList) {
 initialCards.forEach(data => { renderCard(data, placesList); });
 
 function openPopupAddCard() {
-  addCardFormValidation.clearErrors(popupAddCard);
   inputTitleCard.value = '';
   inputPhotoLink.value = '';
+  addCardFormValidation.clearErrors(popupAddCard);
   openPopup(popupAddCard);
 }
 addCardButton.addEventListener('click', openPopupAddCard);
