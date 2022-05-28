@@ -62,15 +62,17 @@ profileFormValidation.enableValidation();
 const addCardFormValidation = new FormValidator(settings, popupAddCard);
 addCardFormValidation.enableValidation();
 
-function openPopup(element) {
-  document.addEventListener('keydown', handleEscUp);
-  element.classList.add('popup_opened')
-}
+//Popup
+// function openPopup(element) {
+//   document.addEventListener('keydown', handleEscUp);
+//   element.classList.add('popup_opened')
+// }
 
-function closePopup(element) {
-  document.removeEventListener('keydown', handleEscUp);
-  element.classList.remove('popup_opened');
-}
+//Popup
+// function closePopup(element) {
+//   document.removeEventListener('keydown', handleEscUp);
+//   element.classList.remove('popup_opened');
+// }
 
 function openPopupProfile() {
   inputName.value = profileName.textContent;
@@ -79,18 +81,20 @@ function openPopupProfile() {
   openPopup(popupEdit);
 }
 
-function handleCloseButtonClick(evt) {
-  if (evt.target.classList.contains("popup") || evt.target.classList.contains("popup__close-btn")) {
-    closePopup(evt.target.closest(".popup"));
-  }
-}
+//Popup
+// function handleCloseButtonClick(evt) {
+//   if (evt.target.classList.contains("popup") || evt.target.classList.contains("popup__close-btn")) {
+//     closePopup(evt.target.closest(".popup"));
+//   }
+// }
 
-function handleEscUp(evt) {
-  if (evt.key === 'Escape') {
-    const activePopup = document.querySelector('.popup_opened');
-    closePopup(activePopup);
-  };
-};
+//Popup
+// function handleEscUp(evt) {
+//   if (evt.key === 'Escape') {
+//     const activePopup = document.querySelector('.popup_opened');
+//     closePopup(activePopup);
+//   };
+// };
 
 function submitFormProfile(evt) {
   evt.preventDefault();
