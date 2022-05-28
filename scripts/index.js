@@ -1,5 +1,6 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from './Section.js';
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const profileEditButton = document.querySelector('.profile__edit-btn');
@@ -106,11 +107,27 @@ function createCard(data) {
   return card.generateCard();
 }
 
-function renderCard(data, placesList) {
-  placesList.prepend(createCard(data));
+// old
+// function renderCard(data, placesList) {
+//   placesList.prepend(createCard(data));
+// }
+// initialCards.forEach(data => { renderCard(data, placesList); });
+
+function renderCard(data) {
+  const card = createCard(data);
+  cardList.addItem(card);
 }
 
-initialCards.forEach(data => { renderCard(data, placesList); });
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    renderCard(item);
+    // const card = createCard(item);
+    // cardList.addItem(card);
+  }
+}, placesList);
+cardList.renderItems();
+
 
 function openPopupAddCard() {
   inputTitleCard.value = '';
@@ -126,7 +143,7 @@ function submitFormAddCard(evt) {
     name: inputTitleCard.value,
     link: inputPhotoLink.value
   }
-  renderCard(data, placesList);
+  renderCard(data);
   closePopup(popupAddCard);
   formElementAddCard.reset();
 }
