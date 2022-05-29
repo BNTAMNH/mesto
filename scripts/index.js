@@ -1,6 +1,7 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import Section from './Section.js';
+import PopupWithImage from "./PopupWithImage.js";
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const profileEditButton = document.querySelector('.profile__edit-btn');
@@ -62,6 +63,13 @@ profileFormValidation.enableValidation();
 const addCardFormValidation = new FormValidator(settings, popupAddCard);
 addCardFormValidation.enableValidation();
 
+const popupWithImage = new PopupWithImage('.popup_type_photo');
+popupWithImage.setEventListeners();
+
+// function handleCardClick(element) {
+//   popupWithImage.open(element);
+// }
+
 //Popup
 // function openPopup(element) {
 //   document.addEventListener('keydown', handleEscUp);
@@ -107,7 +115,11 @@ profileEditButton.addEventListener('click', openPopupProfile);
 formElementProfile.addEventListener('submit', submitFormProfile);
 
 function createCard(data) {
-  const card = new Card(data, templateCard);
+  const card = new Card({
+    data,
+    previewer: () => {
+      popupWithImage.open(data);
+    }}, templateCard);
   return card.generateCard();
 }
 
@@ -154,14 +166,13 @@ function submitFormAddCard(evt) {
 
 formElementAddCard.addEventListener('submit', submitFormAddCard);
 
-function openPopupPhoto(evt) {
-  popupPhotoImg.src = evt.target.src;
-  popupPhotoCaption.textContent = evt.target.alt;
-  popupPhotoImg.alt = evt.target.alt;
-  openPopup(popupPhoto);
-}
-popupEdit.addEventListener("click", handleCloseButtonClick);
-popupAddCard.addEventListener("click", handleCloseButtonClick);
-popupPhoto.addEventListener("click", handleCloseButtonClick);
-
-export {openPopupPhoto};
+//PopupWithImage
+// function openPopupPhoto(evt) {
+//   popupPhotoImg.src = evt.target.src;
+//   popupPhotoCaption.textContent = evt.target.alt;
+//   popupPhotoImg.alt = evt.target.alt;
+//   openPopup(popupPhoto);
+// }
+// popupEdit.addEventListener("click", handleCloseButtonClick);
+// popupAddCard.addEventListener("click", handleCloseButtonClick);
+// popupPhoto.addEventListener("click", handleCloseButtonClick);

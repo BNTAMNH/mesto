@@ -1,11 +1,9 @@
-import { openPopupPhoto } from "./index.js";
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor({ data, previewer }, cardSelector) {
     this._link = data.link;
     this._name = data.name;
     this._cardSelector = cardSelector;
-
+    this._previewer = previewer;
     this._cardElement = document
       .querySelector(this._cardSelector).content
       .querySelector('.place').cloneNode(true);
@@ -42,6 +40,8 @@ export class Card {
       });
 
     this._cardImage
-      .addEventListener('click', openPopupPhoto);
+      .addEventListener('click', () => {
+        this._previewer({ link: this._link, name: this._name });
+      });
   }
 }
