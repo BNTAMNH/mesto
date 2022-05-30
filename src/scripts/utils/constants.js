@@ -1,6 +1,4 @@
 const profileEditButton = document.querySelector('.profile__edit-btn');
-const profileName = document.querySelector('.profile__name');
-const profileAboutMe = document.querySelector('.profile__about-me');
 const formElementProfile = document.querySelector('.popup__form_type_edit');
 const placesList = document.querySelector('.places__list');
 const popupAddCard = document.querySelector('.popup_type_add');
@@ -43,4 +41,4 @@ const settings = {
   errorClass: 'popup__input-error_active'
 };
 
-export {profileEditButton, profileName, profileAboutMe, formElementProfile, placesList, popupAddCard, addCardButton, templateCard, initialCards, settings};
+export {profileEditButton, formElementProfile, placesList, popupAddCard, addCardButton, templateCard, initialCards, settings};

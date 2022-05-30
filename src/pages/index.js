@@ -1,8 +1,6 @@
 import './index.css';
 import {
   profileEditButton,
-  profileName,
-  profileAboutMe,
   formElementProfile,
   placesList,
   popupAddCard,
@@ -29,8 +27,8 @@ const popupWithImage = new PopupWithImage('.popup_type_photo');
 popupWithImage.setEventListeners();
 
 const userInfo = new UserInfo({
-  nameSelector: profileName,
-  infoSelector: profileAboutMe
+  nameSelector: '.profile__name',
+  infoSelector: '.profile__about-me'
 });
 
 const popupWithFormProfile = new PopupWithForm('.popup_type_edit', submitFormProfile);
@@ -52,7 +50,7 @@ profileEditButton.addEventListener('click', openPopupProfile);
 function createCard(data) {
   const card = new Card({
     data,
-    previewer: () => {
+    handleCardClick: () => {
       popupWithImage.open(data);
     }}, templateCard);
   return card.generateCard();

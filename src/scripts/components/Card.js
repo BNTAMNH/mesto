@@ -1,9 +1,9 @@
 export default class Card {
-  constructor({ data, previewer }, cardSelector) {
+  constructor({ data, handleCardClick }, cardSelector) {
     this._link = data.link;
     this._name = data.name;
     this._cardSelector = cardSelector;
-    this._previewer = previewer;
+    this._handleCardClick = handleCardClick;
     this._cardElement = document
       .querySelector(this._cardSelector).content
       .querySelector('.place').cloneNode(true);
@@ -41,7 +41,7 @@ export default class Card {
 
     this._cardImage
       .addEventListener('click', () => {
-        this._previewer({ link: this._link, name: this._name });
+        this._handleCardClick({ link: this._link, name: this._name });
       });
   }
 }
