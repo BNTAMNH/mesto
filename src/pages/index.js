@@ -2,7 +2,6 @@ import './index.css';
 import {
   profileEditButton,
   formElementProfile,
-  placesList,
   popupAddCard,
   addCardButton,
   templateCard,
@@ -66,7 +65,7 @@ const cardList = new Section({
   renderer: (item) => {
     renderCard(item);
   }
-}, placesList);
+}, '.places__list');
 cardList.renderItems();
 
 const popupWithFormCard = new PopupWithForm('.popup_type_add', submitFormCard);
