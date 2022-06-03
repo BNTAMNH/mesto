@@ -25,8 +25,10 @@
 @import url("../blocks/place/__trash-btn/place__trash-btn.css");
 @import url("../blocks/place/__caption/place__caption.css");
 @import url("../blocks/place/__title/place__title.css");
+@import url("../blocks/place/__like/place__like.css");
 @import url("../blocks/place/__like-btn/place__like-btn.css");
 @import url("../blocks/place/__like-btn/_active/place__like-btn_active.css");
+@import url("../blocks/place/__like-counter/place__like-counter.css");
 
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
