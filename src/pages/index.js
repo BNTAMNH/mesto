@@ -14,6 +14,7 @@ import FormValidator from "../scripts/components/FormValidator.js";
 import Section from '../scripts/components/Section.js';
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import PopupWithConfirmation from "../scripts/components/PopupWithConfirmation.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 
 const profileFormValidation = new FormValidator(settings, formElementProfile);
@@ -46,11 +47,21 @@ function submitFormProfile(inputValues) {
 
 profileEditButton.addEventListener('click', openPopupProfile);
 
+function confirmCallback() {
+  console.log('this is work too!')
+}
+
+const popupWithConfirmation = new PopupWithConfirmation('.popup_type_confirm', confirmCallback);
+popupWithConfirmation.setEventListeners();
+
 function createCard(data) {
   const card = new Card({
     data,
     handleCardClick: () => {
       popupWithImage.open(data);
+    },
+    handleDeleteClick: () => {
+      popupWithConfirmation.open();
     }}, templateCard);
   return card.generateCard();
 }
