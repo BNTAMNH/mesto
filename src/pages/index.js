@@ -1,9 +1,12 @@
 import './index.css';
 import {
   profileEditButton,
+  avatarEditButton,
   formElementProfile,
+  formElementAvatar,
   popupAddCard,
   addCardButton,
+  // likeButton,
   templateCard,
   initialCards,
   settings
@@ -23,6 +26,9 @@ profileFormValidation.enableValidation();
 const addCardFormValidation = new FormValidator(settings, popupAddCard);
 addCardFormValidation.enableValidation();
 
+const avatarFormValidation = new FormValidator(settings, formElementAvatar);
+avatarFormValidation.enableValidation();
+
 const popupWithImage = new PopupWithImage('.popup_type_photo');
 popupWithImage.setEventListeners();
 
@@ -30,6 +36,19 @@ const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   infoSelector: '.profile__about-me'
 });
+
+const popupAvatarEdit = new PopupWithForm('.popup_type_avatar-edit', submitAvatar);
+popupAvatarEdit.setEventListeners();
+
+function submitAvatar() {
+  console.log('this function change avatar!');
+  popupAvatarEdit.close();
+}
+
+function openPopupAvatar() {
+  avatarFormValidation.clearErrors(formElementAvatar);
+  popupAvatarEdit.open();
+}
 
 const popupWithFormProfile = new PopupWithForm('.popup_type_edit', submitFormProfile);
 popupWithFormProfile.setEventListeners();
@@ -46,9 +65,11 @@ function submitFormProfile(inputValues) {
 }
 
 profileEditButton.addEventListener('click', openPopupProfile);
+avatarEditButton.addEventListener('click', openPopupAvatar);
 
 function confirmCallback() {
   console.log('this is work too!')
+  popupWithConfirmation.close();
 }
 
 const popupWithConfirmation = new PopupWithConfirmation('.popup_type_confirm', confirmCallback);
@@ -62,6 +83,9 @@ function createCard(data) {
     },
     handleDeleteClick: () => {
       popupWithConfirmation.open();
+    },
+    handleLikeClick: () => {
+      console.log(card._name);
     }}, templateCard);
   return card.generateCard();
 }

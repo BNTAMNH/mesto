@@ -1,7 +1,10 @@
 const profileEditButton = document.querySelector('.profile__edit-btn');
+const avatarEditButton = document.querySelector('.profile__photo-btn');
 const formElementProfile = document.querySelector('.popup__form_type_edit');
+const formElementAvatar = document.querySelector('.popup__form_type_avatar');
 const popupAddCard = document.querySelector('.popup_type_add');
 const addCardButton = document.querySelector('.profile__add-btn');
+const likeButton = document.querySelector('.place__like-btn');
 const templateCard = '#place';
 
 const initialCards = [
@@ -40,4 +43,4 @@ const settings = {
   errorClass: 'popup__input-error_active'
 };
 
-export {profileEditButton, formElementProfile, popupAddCard, addCardButton, templateCard, initialCards, settings};
+export {profileEditButton, avatarEditButton, formElementProfile, formElementAvatar, popupAddCard, addCardButton, likeButton, templateCard, initialCards, settings};
