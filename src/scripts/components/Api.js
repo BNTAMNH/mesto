@@ -5,11 +5,27 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch(this._url, {
+    return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: {
         authorization: this._token
-      },
+      }
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+  }
+
+  getUserInfo() {
+    return fetch(`${this._url}/users/me`, {
+      method: 'GET',
+      headers: {
+        authorization: this._token
+      }
     })
     .then((res) => {
       if (res.ok) {

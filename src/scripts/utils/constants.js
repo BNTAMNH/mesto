@@ -7,6 +7,7 @@ const addCardButton = document.querySelector('.profile__add-btn');
 const likeButton = document.querySelector('.place__like-btn');
 const templateCard = '#place';
 const token = '233a8c63-1700-4115-a0b1-8a186f84e03d';
+const url = 'https://mesto.nomoreparties.co/v1/cohort-43';
 
 const initialCards = [
   {
@@ -44,4 +45,4 @@ const settings = {
   errorClass: 'popup__input-error_active'
 };
 
-export {profileEditButton, avatarEditButton, formElementProfile, formElementAvatar, popupAddCard, addCardButton, likeButton, templateCard, initialCards, settings, token};
+export {profileEditButton, avatarEditButton, formElementProfile, formElementAvatar, popupAddCard, addCardButton, likeButton, templateCard, initialCards, settings, token, url};

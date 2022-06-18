@@ -10,7 +10,8 @@ import {
   templateCard,
   // initialCards,
   settings,
-  token
+  token,
+  url
 } from "../scripts/utils/constants.js";
 
 import Card from "../scripts/components/Card.js";
@@ -22,11 +23,9 @@ import PopupWithConfirmation from "../scripts/components/PopupWithConfirmation.j
 import UserInfo from "../scripts/components/UserInfo.js";
 import Api from '../scripts/components/Api.js';
 
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-43/cards', token);
+const api = new Api(url, token);
 api.getInitialCards()
   .then((initialCards) => {
-    console.log(initialCards);
-
     function renderCard(data) {
       const card = createCard(data);
       cardList.addItem(card);
@@ -39,6 +38,14 @@ api.getInitialCards()
       }
     }, '.places__list');
     cardList.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
+api.getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo(res);
   })
   .catch((err) => {
     console.log(err);
@@ -58,7 +65,8 @@ popupWithImage.setEventListeners();
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
-  infoSelector: '.profile__about-me'
+  infoSelector: '.profile__about-me',
+  avatarSelector: '.profile__photo'
 });
 
 const popupAvatarEdit = new PopupWithForm('.popup_type_avatar-edit', submitAvatar);
