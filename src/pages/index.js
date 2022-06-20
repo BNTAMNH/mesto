@@ -11,7 +11,8 @@ import {
   // initialCards,
   settings,
   token,
-  url
+  url,
+  initialCards
 } from "../scripts/utils/constants.js";
 
 import Card from "../scripts/components/Card.js";
@@ -24,28 +25,36 @@ import UserInfo from "../scripts/components/UserInfo.js";
 import Api from '../scripts/components/Api.js';
 
 const api = new Api(url, token);
-api.getInitialCards()
-  .then((initialCards) => {
-    function renderCard(data) {
-      const card = createCard(data);
-      cardList.addItem(card);
-    }
 
-    const cardList = new Section({
-      items: initialCards,
-      renderer: (item) => {
-        renderCard(item);
-      }
-    }, '.places__list');
-    cardList.renderItems();
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+const cardList = new Section({
+  renderer: (data) => {
+    cardList.addItem(createCard(data));
+  }
+}, '.places__list');
 
-api.getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res);
+const popupWithFormCard = new PopupWithForm('.popup_type_add', submitFormCard);
+popupWithFormCard.setEventListeners();
+
+function submitFormCard(inputValues) {
+  const data = {
+    name: inputValues.title,
+    link: inputValues.link
+  };
+  api.setNewCard(data)
+    .then((res) => {
+      cardList.addItem(createCard(res));
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
+  popupWithFormCard.close();
+}
+
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initialCards, userData]) => {
+    cardList.renderItems(initialCards.reverse());
+    userInfo.setUserInfo(userData);
   })
   .catch((err) => {
     console.log(err);
@@ -92,8 +101,14 @@ function openPopupProfile() {
 }
 
 function submitFormProfile(inputValues) {
-  userInfo.setUserInfo(inputValues);
-  popupWithFormProfile.close();
+  api.setUserInfo(inputValues)
+   .then((res) => {
+      userInfo.setUserInfo(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    popupWithFormProfile.close();
 }
 
 profileEditButton.addEventListener('click', openPopupProfile);
@@ -122,17 +137,7 @@ function createCard(data) {
   return card.generateCard();
 }
 
-const popupWithFormCard = new PopupWithForm('.popup_type_add', submitFormCard);
-popupWithFormCard.setEventListeners();
 
-function submitFormCard(inputValues) {
-  const data = {
-    name: inputValues.title,
-    link: inputValues.link
-  };
-  renderCard(data);
-  popupWithFormCard.close();
-}
 
 function handleAddCardButton() {
   addCardFormValidation.clearErrors(popupAddCard);

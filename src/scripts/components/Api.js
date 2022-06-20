@@ -4,6 +4,13 @@ export default class Api {
     this._token = token;
   }
 
+  _handleResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
@@ -11,13 +18,7 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(res => this._handleResponse(res))
   }
 
   getUserInfo() {
@@ -27,12 +28,35 @@ export default class Api {
         authorization: this._token
       }
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
+    .then(res => this._handleResponse(res))
+  }
 
-      return Promise.reject(`Ошибка: ${res.status}`);
+  setUserInfo(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
     })
+    .then(res => this._handleResponse(res))
+  }
+
+  setNewCard(data) {
+    const body = {
+      name: data.name,
+      link: data.link
+    }
+
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+    .then(res => this._handleResponse(res))
   }
 }
