@@ -8,11 +8,9 @@ import {
   addCardButton,
   // likeButton,
   templateCard,
-  // initialCards,
   settings,
   token,
   url,
-  initialCards
 } from "../scripts/utils/constants.js";
 
 import Card from "../scripts/components/Card.js";
@@ -23,7 +21,7 @@ import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import PopupWithConfirmation from "../scripts/components/PopupWithConfirmation.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import Api from '../scripts/components/Api.js';
-
+let myId = "";
 const api = new Api(url, token);
 
 const cardList = new Section({
@@ -53,6 +51,7 @@ function submitFormCard(inputValues) {
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
+    myId = userData._id;
     cardList.renderItems(initialCards.reverse());
     userInfo.setUserInfo(userData);
   })
@@ -114,30 +113,31 @@ function submitFormProfile(inputValues) {
 profileEditButton.addEventListener('click', openPopupProfile);
 avatarEditButton.addEventListener('click', openPopupAvatar);
 
-function confirmCallback() {
-  console.log('this is work too!')
-  popupWithConfirmation.close();
-}
-
-const popupWithConfirmation = new PopupWithConfirmation('.popup_type_confirm', confirmCallback);
+const popupWithConfirmation = new PopupWithConfirmation('.popup_type_confirm');
 popupWithConfirmation.setEventListeners();
 
 function createCard(data) {
   const card = new Card({
-    data,
+    data: { ...data, userId: myId },
     handleCardClick: () => {
       popupWithImage.open(data);
     },
     handleDeleteClick: () => {
+      popupWithConfirmation.setSubmitAction(() => {
+        api.deleteCard(card.getIdCard())
+          .then(() => {
+            card.deleteCard();
+            popupWithConfirmation.close();
+          })
+      });
       popupWithConfirmation.open();
     },
     handleLikeClick: () => {
       console.log(card._name);
-    }}, templateCard);
+    }
+  }, templateCard);
   return card.generateCard();
 }
-
-
 
 function handleAddCardButton() {
   addCardFormValidation.clearErrors(popupAddCard);
