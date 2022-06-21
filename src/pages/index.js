@@ -6,7 +6,6 @@ import {
   formElementAvatar,
   popupAddCard,
   addCardButton,
-  // likeButton,
   templateCard,
   settings,
   token,
@@ -133,7 +132,13 @@ function createCard(data) {
       popupWithConfirmation.open();
     },
     handleLikeClick: () => {
-      console.log(card._name);
+      api.changeLikeCardStatus(card.getIdCard(), card.isLiked())
+        .then((res) => {
+          card.updateLikeCount(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
     }
   }, templateCard);
   return card.generateCard();

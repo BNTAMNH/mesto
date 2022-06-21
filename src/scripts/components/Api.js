@@ -69,4 +69,14 @@ export default class Api {
     })
     .then(res => this._handleResponse(res))
   }
+
+  changeLikeCardStatus(idCard, isLiked) {
+    return fetch(`${this._url}/cards/${idCard}/likes`, {
+      method: isLiked ? 'DELETE' : 'PUT',
+        headers: {
+          authorization: this._token
+        }
+      })
+      .then(res => this._handleResponse(res))
+    }
 }

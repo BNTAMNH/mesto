@@ -24,11 +24,7 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardElement.querySelector('.place__title').textContent = this._name;
     this._cardImage.alt = this._name;
-
-    if (this._like.length !== 0 ) {
-      this._likeCounter.textContent = this._like.length;
-    }
-
+    this._renderLikeCount();
     if (this._ownerId !== this._userId) {
       this._deleteButton.remove();
     }
@@ -39,9 +35,24 @@ export default class Card {
     return this._cardId;
   }
 
-  // _handleLikeClick() {
-  //   this._likeButton.classList.toggle('place__like-btn_active');
-  // }
+  isLiked() {
+   return this._like.find(item => item._id === this._userId);
+  }
+
+  _renderLikeCount() {
+    this._likeCounter.textContent = this._like.length;
+
+    if (this.isLiked()) {
+      this._likeButton.classList.add('place__like-btn_active');
+    } else {
+      this._likeButton.classList.remove('place__like-btn_active');
+    }
+  }
+
+  updateLikeCount(data) {
+    this._like = data.likes;
+    this._renderLikeCount();
+  }
 
   deleteCard() {
     this._cardElement.remove();
