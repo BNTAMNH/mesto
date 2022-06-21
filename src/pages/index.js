@@ -41,6 +41,7 @@ function submitFormCard(inputValues) {
   api.setNewCard(data)
     .then((res) => {
       cardList.addItem(createCard(res));
+      popupWithFormCard.close();
     })
     .catch((err) => {
       console.log(err);
@@ -48,8 +49,6 @@ function submitFormCard(inputValues) {
     .finally(() => {
       popupWithFormCard.renderLoading(false);
     })
-
-  popupWithFormCard.close();
 }
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
@@ -84,11 +83,11 @@ const popupAvatarEdit = new PopupWithForm('.popup_type_avatar-edit', submitAvata
 popupAvatarEdit.setEventListeners();
 
 function submitAvatar(inputValues) {
-  console.log(inputValues);
   popupAvatarEdit.renderLoading(true);
   api.changeAvatar({ avatar: inputValues.avatar })
     .then((res) => {
       userInfo.setUserAvatar({ avatar: res.avatar });
+      popupAvatarEdit.close();
     })
     .catch((err) => {
       console.log(err);
@@ -96,7 +95,6 @@ function submitAvatar(inputValues) {
     .finally(() => {
       popupAvatarEdit.renderLoading(false);
     })
-  popupAvatarEdit.close();
 }
 
 function openPopupAvatar() {
@@ -118,6 +116,7 @@ function submitFormProfile(inputValues) {
   api.setUserInfo(inputValues)
    .then((res) => {
       userInfo.setUserInfo(res);
+      popupWithFormProfile.close();
     })
     .catch((err) => {
       console.log(err);
@@ -125,7 +124,6 @@ function submitFormProfile(inputValues) {
     .finally(() => {
       popupWithFormProfile.renderLoading(false);
     })
-    popupWithFormProfile.close();
 }
 
 profileEditButton.addEventListener('click', openPopupProfile);
@@ -146,6 +144,9 @@ function createCard(data) {
           .then(() => {
             card.deleteCard();
             popupWithConfirmation.close();
+          })
+          .catch((res) => {
+            console.log(res);
           })
       });
       popupWithConfirmation.open();
