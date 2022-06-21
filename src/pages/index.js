@@ -37,12 +37,16 @@ function submitFormCard(inputValues) {
     name: inputValues.title,
     link: inputValues.link
   };
+  popupWithFormCard.renderLoading(true);
   api.setNewCard(data)
     .then((res) => {
       cardList.addItem(createCard(res));
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      popupWithFormCard.renderLoading(false);
     })
 
   popupWithFormCard.close();
@@ -80,12 +84,16 @@ const popupAvatarEdit = new PopupWithForm('.popup_type_avatar-edit', submitAvata
 popupAvatarEdit.setEventListeners();
 
 function submitAvatar(inputValues) {
+  popupAvatarEdit.renderLoading(true);
   api.changeAvatar({ avatar: inputValues.link })
     .then((res) => {
       userInfo.setUserAvatar({ avatar: res.avatar });
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      popupAvatarEdit.renderLoading(false);
     })
   popupAvatarEdit.close();
 }
@@ -105,12 +113,16 @@ function openPopupProfile() {
 }
 
 function submitFormProfile(inputValues) {
+  popupWithFormProfile.renderLoading(true);
   api.setUserInfo(inputValues)
    .then((res) => {
       userInfo.setUserInfo(res);
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      popupWithFormProfile.renderLoading(false);
     })
     popupWithFormProfile.close();
 }
