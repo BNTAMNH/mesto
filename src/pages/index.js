@@ -79,8 +79,14 @@ const userInfo = new UserInfo({
 const popupAvatarEdit = new PopupWithForm('.popup_type_avatar-edit', submitAvatar);
 popupAvatarEdit.setEventListeners();
 
-function submitAvatar() {
-  console.log('this function change avatar!');
+function submitAvatar(inputValues) {
+  api.changeAvatar({ avatar: inputValues.link })
+    .then((res) => {
+      userInfo.setUserAvatar({ avatar: res.avatar });
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   popupAvatarEdit.close();
 }
 

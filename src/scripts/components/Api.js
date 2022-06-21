@@ -73,10 +73,26 @@ export default class Api {
   changeLikeCardStatus(idCard, isLiked) {
     return fetch(`${this._url}/cards/${idCard}/likes`, {
       method: isLiked ? 'DELETE' : 'PUT',
-        headers: {
-          authorization: this._token
-        }
-      })
-      .then(res => this._handleResponse(res))
+      headers: {
+        authorization: this._token
+      }
+    })
+    .then(res => this._handleResponse(res))
+  }
+
+  changeAvatar(data) {
+    const body = {
+      avatar: data.avatar
     }
+
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+    .then(res => this._handleResponse(res));
+  }
 }
